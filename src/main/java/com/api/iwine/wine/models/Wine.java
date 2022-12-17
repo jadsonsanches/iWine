@@ -10,8 +10,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "wine")
 public class Wine implements Serializable {
 
@@ -50,85 +54,4 @@ public class Wine implements Serializable {
 
   @Column(nullable = false)
   private LocalDateTime updatedAt;
-
-  public UUID getId() {
-    return id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
-
-  public String getCountry() {
-    return country;
-  }
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
-  public Float getAlcoholContent() {
-    return alcoholContent;
-  }
-
-  public void setAlcoholContent(Float alcoholContent) {
-    this.alcoholContent = alcoholContent;
-  }
-
-  public Integer getVolume() {
-    return volume;
-  }
-
-  public void setVolume(Integer volume) {
-    this.volume = volume;
-  }
-
-  public Float getRate() {
-    return rate;
-  }
-
-  public void setRate(Float rate) {
-    this.rate = rate;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public LocalDateTime getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public LocalDateTime getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public void setUpdatedAt(LocalDateTime updatedAt) {
-    this.updatedAt = updatedAt;
-  }
-
 }

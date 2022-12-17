@@ -1,11 +1,14 @@
 package com.api.iwine.wine.dtos;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class WineDto {
 
   @NotBlank
@@ -33,9 +36,4 @@ public class WineDto {
   @NotBlank
   @Size(max = 500)
   private String description;
-
-  private LocalDateTime createdAt;
-
-  private LocalDateTime updatedAt;
-
 }
