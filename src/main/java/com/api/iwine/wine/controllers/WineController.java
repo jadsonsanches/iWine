@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.iwine.wine.dtos.WineDto;
@@ -25,6 +26,7 @@ import com.api.iwine.wine.models.Wine;
 import com.api.iwine.wine.services.WineService;
 
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -52,6 +54,13 @@ public class WineController {
     return ResponseEntity.status(HttpStatus.OK).body(wine.get());
   }
 
+  @GetMapping("/find")
+  public ResponseEntity<Object> findByCountry(@RequestParam String country) {
+    List<Wine> wines = wineService.findByCountry(country);
+
+    return ResponseEntity.status(HttpStatus.OK).body(wines);
+  }
+
   @PostMapping
   public ResponseEntity<Object> create(@RequestBody @Valid WineDto wine) {
     var newWine = new Wine();
@@ -71,9 +80,10 @@ public class WineController {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Wine not found");
 
     Wine wine = new Wine();
-    BeanUtils.copyProperties(wine, wineUpdate);
+    BeanUtils.copyProperties(wineUpdate, wine);
     wine.setId(wineFinded.get().getId());
-    wine.setUpdatedAt(wineFinded.get().getUpdatedAt());
+    wine.setCreatedAt(wineFinded.get().getCreatedAt());
+    wine.setUpdatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 
     return ResponseEntity.status(HttpStatus.OK).body(wineService.save(wine));
   }

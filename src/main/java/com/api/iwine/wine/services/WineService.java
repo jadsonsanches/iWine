@@ -37,4 +37,8 @@ public class WineService {
   public void delete(Wine wine) {
     wineRepository.delete(wine);
   }
+
+  public List<Wine> findByCountry(String country) {
+    return wineRepository.findByCountry(country);
+  }
 }
