@@ -8,10 +8,13 @@ services:
       - POSTGRES_DB=iwine
       - POSTGRES_USER=iwine
       - POSTGRES_PASSWORD=iwine
+      - POSTGRES_HOST=local_postgres_compose
     expose:
       - "5432"
     ports:
       - "25432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
 
   pgadmin_iwine:
     image: dpage/pgadmin4
